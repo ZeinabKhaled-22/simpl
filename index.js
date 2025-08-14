@@ -5,7 +5,7 @@ import { bootStrap } from './src/bootStrap.js'
 
 // create server
 const app = express()
-const port = 3000
+const port = process.env.port || 3000
 
 // connect db
 connectDB()
