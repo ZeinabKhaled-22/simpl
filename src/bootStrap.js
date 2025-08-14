@@ -13,4 +13,9 @@ export const bootStrap = (app, express) => {
     // globalErrorHandling
     app.use(globalErrorHandling)
 
+    // vercel
+    app.all("/", (req, res, next) => {
+        return res.json({ message: "invalid url" })
+    })
+
 }
