@@ -8,7 +8,6 @@ import { generateToken } from "../../utils/token.js"
 import { AppError } from '../../utils/appError.js'
 
 
-
 // signup
 export const signup = async (req, res, next) => {
     // get data from req
@@ -16,7 +15,6 @@ export const signup = async (req, res, next) => {
     // check existence
     const userExist = await User.findOne({ email }) //{}, null
     if (userExist) {
-        // return next(new AppError(messages.user.alreadyExist, 409))
         return next(new AppError(messages.user.alreadyExist, 409))
     }
     // hash password
@@ -36,24 +34,23 @@ export const signup = async (req, res, next) => {
     //     return next(new AppError(messages.user.failToCreate, 500))
     // }
     // generate otp
-    const otp = generateOTP()
+    // const otp = generateOTP()
     // update user otp
-    user.otp = otp
-    user.expireDateOtp = Date.now() + 15 * 60 * 1000
+    // user.otp = otp
+    // user.expireDateOtp = Date.now() + 15 * 60 * 1000
     // add to db
     const createdUser = await user.save() //{}, null
     if (!createdUser) {
-        // return next(new AppError(messages.user.failToCreate, 500))
         return next(new AppError(messages.user.failToCreate, 500))
     }
     // generate token
-    const token = generateToken({ payload: email, _id: createdUser._id })
+    // const token = generateToken({ payload: email, _id: createdUser._id })
     // send email
-    await sendEmail({
-        to: email,
-        subject: 'verify your account',
-        html: `<h1> the otp that verify your account is ${otp} </h1>`
-    })
+    // await sendEmail({
+    //     to: email,
+    //     subject: 'verify your account',
+    //     html: `<h1> the otp that verify your account is ${otp} </h1>`
+    // })
     // send response
     return res.status(201).json({
         message: messages.user.creadtedSuccessfully,
@@ -81,13 +78,11 @@ export const login = async (req, res, next) => {
     // check existence
     const userExist = await User.findOne({ email }) //{}, null
     if (!userExist) {
-        // return next(new AppError(messages.user.invalidCredentials, 400))
         return next(new AppError(messages.user.invalidCredentials, 400))
     }
     // compare password
     const match = bcrypt.compareSync(password, userExist.password)
     if (!match) {
-        // return next(new AppError(messages.user.invalidCredentials, 400))
         return next(new AppError(messages.user.invalidCredentials, 400))
     }
     // generate token

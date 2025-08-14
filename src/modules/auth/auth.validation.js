@@ -7,6 +7,7 @@ export const signupVal = joi.object({
     firstName: generalFields.firstName.required(),
     lastName: generalFields.lastName.required(),
     email: generalFields.email.required(),
+    password: generalFields.password.required(),
     birthday: generalFields.birthday.required(),
     gender: generalFields.gender.required()
 })
