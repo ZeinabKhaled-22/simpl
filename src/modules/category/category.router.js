@@ -14,7 +14,7 @@ const categroyRouter = Router()
 // add categroy >> authentication(login) authorization(who is allowed)
 categroyRouter.post('/addcategroy',
     isAuthenticated(),
-    isAuthorized([roles.ADMIN]),
+   // isAuthorized([roles.ADMIN]),
     fileUploads({ folder: "categroy" }).single('image'),
     isValid(addCategroyVal),
     asyncHandler(addCategroy)
