@@ -2,7 +2,6 @@
 import cors from 'cors'
 import { globalErrorHandling } from "./middleware/asyncHandler.js"
 import { authRouter, categroyRouter, productRouter, subcategroyRouter,  } from "./modules/index.js"
-// import { Prouduct } from "../../E_commerce/db/index.js"
 
 // bootStrap
 export const bootStrap = (app, express) => {
