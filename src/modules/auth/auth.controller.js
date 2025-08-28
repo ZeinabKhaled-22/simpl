@@ -36,7 +36,6 @@ export const signup = async (req, res, next) => {
     }
     // generate token
     const token = generateToken({ payload: email, _id: createdUser._id })
-    
     // send email
     await sendEmail({
         to: email,
