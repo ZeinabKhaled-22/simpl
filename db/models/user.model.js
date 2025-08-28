@@ -1,6 +1,6 @@
 // import module
 import { model, Schema } from "mongoose";
-import { gender, roles } from "../../src/utils/constant/enums.js";
+import { gender, roles, status } from "../../src/utils/constant/enums.js";
 
 // schema
 const userSchema = new Schema({
@@ -33,6 +33,10 @@ const userSchema = new Schema({
         type: String,
         enum: Object.values(gender)
     },
+    status: {
+        type: String,
+        enum: Object.values(status)
+    }
 },
     { timestamps: true }
 )
