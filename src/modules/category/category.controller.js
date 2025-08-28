@@ -15,14 +15,14 @@ export const addCategroy = async (req, res, next) => {
         return next(new AppError(messages.categroy.alreadyExist, 409))
     }
     // upload image
-    const { secure_url, public_id } = await cloudinary.uploader.upload(req.file.image, { folder: "simpl/categroy/image" })
-    let image = { secure_url, public_id }
+    const { secure_url, public_id } = await cloudinary.uploader.upload(req.file.path, { folder: "simpl/categroy/image" })
+    req.failImage = { secure_url, public_id }
     // prepare data
     const slug = slugify(name)
     const categroy = new Categroy({
         name,
         slug,
-        image,
+        image : { secure_url, public_id },
         createdBy: req.authUser._id
     })
     const createdCategroy = await categroy.save()
