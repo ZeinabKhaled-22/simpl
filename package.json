@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": "22.14.0"
+  },
   "scripts": {
     "watch": "nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +27,7 @@
     "nanoid": "^5.1.5",
     "nodemailer": "^7.0.5",
     "path": "^0.12.7",
+    "pm2": "^6.0.10",
     "slugify": "^1.6.6"
   },
   "devDependencies": {
