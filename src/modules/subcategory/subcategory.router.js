@@ -14,7 +14,7 @@ const subcategroyRouter = Router()
 // add subcategroy >> authentication authorization
 subcategroyRouter.post('/addsubcategroy',
     isAuthenticated(),
-  //  isAuthorized([roles.ADMIN, roles.SELLER]),
+    isAuthorized([roles.ADMIN]),
     cloudUploads({ folder: "subcategroy" }).single('image'),
     isValid(addSubcategroyVal),
     asyncHandler(addSubcategroy)
@@ -24,7 +24,7 @@ subcategroyRouter.post('/addsubcategroy',
 // update subcategroy 
 subcategroyRouter.put('/:subcategroyId',
     isAuthenticated(),
-   // isAuthorized([roles.ADMIN, roles.SELLER]),
+    isAuthorized([roles.ADMIN]),
     cloudUploads({}).single('image'),
     isValid(updateSubcategroyVal),
     asyncHandler(updateSubcategroy)
@@ -39,7 +39,7 @@ subcategroyRouter.get('/:subcategroyId', asyncHandler(specificSubcategroy))
 // delete subcategroy
 subcategroyRouter.delete('/:subcategroyId',
     isAuthenticated(),
-   // isAuthorized([roles.ADMIN]),
+    isAuthorized([roles.ADMIN]),
     asyncHandler(deleteSubcategroy)
 )
 

@@ -26,7 +26,7 @@ categroyRouter.get('/getcategroies', asyncHandler(getAllCategroies))
 // update categroy
 categroyRouter.put('/:categroyId',
     isAuthenticated(),
-   // isAuthorized([roles.ADMIN]),
+    isAuthorized([roles.ADMIN]),
     cloudUploads({}).single('image'),
     isValid(updateCategroyVal),
     asyncHandler(updateCategroy)
@@ -35,7 +35,7 @@ categroyRouter.put('/:categroyId',
 // delete categroy
 categroyRouter.delete('/:categroyId',
     isAuthenticated(),
-   // isAuthorized([roles.ADMIN]),
+    isAuthorized([roles.ADMIN]),
     asyncHandler(deleteCategroy)
 )
 

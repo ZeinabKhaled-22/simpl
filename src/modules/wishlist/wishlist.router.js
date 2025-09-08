@@ -12,15 +12,15 @@ const wishlistRouter = Router()
 // add to wishlist
 wishlistRouter.post('/:productId',
     isAuthenticated(),
-    // isAuthorized([roles.ADMIN]),
+    isAuthorized([roles.ADMIN]),
     asyncHandler(addToWishlist)
 )
 
 
 // get all wishlist
-wishlistRouter.get('/', 
+wishlistRouter.get('/',
     isAuthenticated(),
-    // isAuthorized([roles.ADMIN]),
+    isAuthorized([roles.ADMIN]),
     asyncHandler(getAllWishlist)
 )
 
@@ -28,7 +28,7 @@ wishlistRouter.get('/',
 // delete wishlist
 wishlistRouter.delete('/:productId',
     isAuthenticated(),
-    // isAuthorized([roles.ADMIN]),
+    isAuthorized([roles.ADMIN]),
     asyncHandler(deleteWishlist)
 )
 
@@ -37,7 +37,7 @@ wishlistRouter.delete('/:productId',
 // get specific
 wishlistRouter.get('/:productId',
     isAuthenticated(),
-    // isAuthorized([roles.ADMIN]),
+    isAuthorized([roles.ADMIN]),
     asyncHandler(specificWishlist)
 )
 

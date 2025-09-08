@@ -25,7 +25,7 @@ productRouter.get('/', asyncHandler(getAllProducts))
 // update product
 productRouter.put('/:productId',
     isAuthenticated(),
-    // isAuthorized([roles.ADMIN, roles.SELLER]),
+    isAuthorized([roles.ADMIN]),
     cloudUploads({}).fields([{ name: 'mainImage', maxCount: 1 }, { name: 'subImages', maxCount: 5 }]),
     isValid(updateProductVal),
     asyncHandler(updateProduct)
@@ -37,7 +37,7 @@ productRouter.get('/:productId', asyncHandler(specificProduct))
 // delete product
 productRouter.delete('/:productId',
     isAuthenticated(),
-    // isAuthorized([roles.ADMIN, roles.SELLER]),
+    isAuthorized([roles.ADMIN]),
     asyncHandler(deleteProduct)
 )
 
