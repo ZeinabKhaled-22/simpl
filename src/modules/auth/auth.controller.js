@@ -47,16 +47,16 @@ export const signup = async (req, res, next) => {
 
 
 // verify email
-export const verifyAccount = async (req, res, next) => {
-    // get data from req
-    const { token } = req.params
-    // verify token
-    const payload = verifyToken({ token })
-    // update user
-    const user = await User.findOneAndUpdate({ email: payload, status: status.PENDING }, { status: status.VERIFIED })
-    // send response
-    return res.status(200).json({ message: messages.user.verified, success: true })
-}
+// export const verifyAccount = async (req, res, next) => {
+//     // get data from req
+//     const { token } = req.params
+//     // verify token
+//     const payload = verifyToken({ token })
+//     // update user
+//     const user = await User.findOneAndUpdate({ email: payload, status: status.PENDING }, { status: status.VERIFIED })
+//     // send response
+//     return res.status(200).json({ message: messages.user.verified, success: true })
+// }
 
 
 

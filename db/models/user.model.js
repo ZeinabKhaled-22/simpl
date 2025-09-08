@@ -33,11 +33,11 @@ const userSchema = new Schema({
         type: String,
         enum: Object.values(gender)
     },
-    status: {
-        type: String,
-        enum: Object.values(status),
-        default: status.PENDING
-    },
+    // status: {
+    //     type: String,
+    //     enum: Object.values(status),
+    //     default: status.PENDING
+    // },
     wishlist: [{
         type: Schema.Types.ObjectId,
         ref: "Product"

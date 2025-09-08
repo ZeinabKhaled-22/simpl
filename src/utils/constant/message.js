@@ -13,4 +13,5 @@ export const messages = {
   product: generateMessage('product'),
   categroy: generateMessage('categroy'),
   subcategroy: generateMessage('subcategroy'),
+  wishlist: generateMessage('wishlist')
 }

@@ -14,7 +14,7 @@ export const isAuthenticated = () => {
             return next(new AppError(payload.message, 401))
         }
         // check user existence 
-        const authUser = await User.findOne({ _id: payload._id, status: status.VERIFIED }) // {}, null
+        const authUser = await User.findOne({ _id: payload._id }) // {}, null
         if (!authUser) {
             return next(new AppError(messages.user.notFound, 404))
         }

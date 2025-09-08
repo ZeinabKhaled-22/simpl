@@ -21,7 +21,7 @@ categroyRouter.post('/addcategroy',
 )
 
 // get categroy
-categroyRouter.get('/', asyncHandler(getAllCategroies))
+categroyRouter.get('/getcategroies', asyncHandler(getAllCategroies))
 
 // update categroy
 categroyRouter.put('/:categroyId',
