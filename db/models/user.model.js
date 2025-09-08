@@ -1,5 +1,5 @@
 // import module
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 import { gender, roles, status } from "../../src/utils/constant/enums.js";
 
 // schema
@@ -37,7 +37,11 @@ const userSchema = new Schema({
         type: String,
         enum: Object.values(status),
         default: status.PENDING
-    }
+    },
+    wishlist: [{
+        type: Schema.Types.ObjectId,
+        ref: "Product"
+    }]
 },
     { timestamps: true }
 )
