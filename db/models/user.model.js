@@ -38,6 +38,11 @@ const userSchema = new Schema({
     //     enum: Object.values(status),
     //     default: status.PENDING
     // },
+    role: {
+        type: String,
+        enum: Object.values(roles),
+        default: roles.USER
+    },
     wishlist: [{
         type: Schema.Types.ObjectId,
         ref: "Product"
