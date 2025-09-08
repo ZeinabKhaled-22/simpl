@@ -7,5 +7,6 @@ export const addSubcategroyVal = joi.object({
 })
 
 export const updateSubcategroyVal = joi.object({
-    name: generalFields.name
+    name: generalFields.name,
+    subcategroyId: generalFields.objectId
 })

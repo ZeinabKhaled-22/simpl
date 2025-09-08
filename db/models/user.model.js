@@ -35,7 +35,8 @@ const userSchema = new Schema({
     },
     status: {
         type: String,
-        enum: Object.values(status)
+        enum: Object.values(status),
+        default: status.PENDING
     }
 },
     { timestamps: true }

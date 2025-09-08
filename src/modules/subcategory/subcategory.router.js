@@ -7,14 +7,15 @@ import { addSubcategroy, deleteSubcategroy, getAllSubategroies, specificSubcateg
 import { isAuthenticated } from "../../middleware/authentication.js"
 import { isAuthorized } from "../../middleware/authorization.js"
 import { roles } from "../../utils/constant/enums.js"
+import { cloudUploads } from "../../utils/multer_cloud.js"
 
 const subcategroyRouter = Router()
 
 // add subcategroy >> authentication authorization
-subcategroyRouter.post('/',
+subcategroyRouter.post('/addsubcategroy',
     isAuthenticated(),
-    isAuthorized([roles.ADMIN, roles.SELLER]),
-    fileUploads({ folder: "subcategroy" }).single('image'),
+  //  isAuthorized([roles.ADMIN, roles.SELLER]),
+    cloudUploads({ folder: "subcategroy" }).single('image'),
     isValid(addSubcategroyVal),
     asyncHandler(addSubcategroy)
 
@@ -23,7 +24,8 @@ subcategroyRouter.post('/',
 // update subcategroy 
 subcategroyRouter.put('/:subcategroyId',
     isAuthenticated(),
-    isAuthorized([roles.ADMIN, roles.SELLER]),
+   // isAuthorized([roles.ADMIN, roles.SELLER]),
+    cloudUploads({}).single('image'),
     isValid(updateSubcategroyVal),
     asyncHandler(updateSubcategroy)
 )
@@ -37,7 +39,7 @@ subcategroyRouter.get('/:subcategroyId', asyncHandler(specificSubcategroy))
 // delete subcategroy
 subcategroyRouter.delete('/:subcategroyId',
     isAuthenticated(),
-    isAuthorized([roles.ADMIN, roles.SELLER]),
+   // isAuthorized([roles.ADMIN]),
     asyncHandler(deleteSubcategroy)
 )
 

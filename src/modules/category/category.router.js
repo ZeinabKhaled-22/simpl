@@ -13,20 +13,20 @@ const categroyRouter = Router()
 
 // add categroy >> authentication(login) authorization(who is allowed)
 categroyRouter.post('/addcategroy',
-   // isAuthenticated(),
-   // isAuthorized([roles.ADMIN]),
-    fileUploads({ folder: "categroy" }).single('image'),
+    isAuthenticated(),
+    //isAuthorized([roles.ADMIN]),
+    cloudUploads({ folder: "categroy" }).single('image'),
     isValid(addCategroyVal),
     asyncHandler(addCategroy)
 )
 
 // get categroy
-categroyRouter.get('/getcategroies', asyncHandler(getAllCategroies))
+categroyRouter.get('/', asyncHandler(getAllCategroies))
 
 // update categroy
 categroyRouter.put('/:categroyId',
     isAuthenticated(),
-    isAuthorized([roles.ADMIN]),
+   // isAuthorized([roles.ADMIN]),
     cloudUploads({}).single('image'),
     isValid(updateCategroyVal),
     asyncHandler(updateCategroy)
@@ -35,7 +35,7 @@ categroyRouter.put('/:categroyId',
 // delete categroy
 categroyRouter.delete('/:categroyId',
     isAuthenticated(),
-    isAuthorized([roles.ADMIN]),
+   // isAuthorized([roles.ADMIN]),
     asyncHandler(deleteCategroy)
 )
 

@@ -36,12 +36,6 @@ export const signup = async (req, res, next) => {
     }
     // generate token
     const token = generateToken({ payload: email, _id: createdUser._id })
-    // send email
-    await sendEmail({
-        to: email,
-        subject: 'verify your account',
-        html: `<p>click on link to verify account <a href="${req.protocol}://${req.headers.host}/auth/verify/${token}">link</a></p>`
-    })
     // send response
     return res.status(201).json({
         message: messages.user.creadtedSuccessfully,
@@ -59,7 +53,7 @@ export const verifyAccount = async (req, res, next) => {
     // verify token
     const payload = verifyToken({ token })
     // update user
-    await User.findOneAndUpdate({ email: payload.email, status: status.PENDING }, { status: status.VERIFIED })
+    const user = await User.findOneAndUpdate({ email: payload, status: status.PENDING }, { status: status.VERIFIED })
     // send response
     return res.status(200).json({ message: messages.user.verified, success: true })
 }

@@ -22,7 +22,7 @@ export const addCategroy = async (req, res, next) => {
     const categroy = new Categroy({
         name,
         slug,
-        image : { secure_url, public_id },
+        image: { secure_url, public_id },
         createdBy: req.authUser._id
     })
     const createdCategroy = await categroy.save()
@@ -48,7 +48,6 @@ export const updateCategroy = async (req, res, next) => {
     // get data from req
     let { name } = req.body
     const { categroyId } = req.params
-    name = name.toLowerCase()
     // check existence
     const categroyExist = await Categroy.findById(categroyId)//{}, null
     if (!categroyExist) {
@@ -60,16 +59,19 @@ export const updateCategroy = async (req, res, next) => {
         return next(new AppError(messages.categroy.alreadyExist, 409))
     }
     // prepare data
-    const slug = slugify(name)
-    categroyExist.name = name
-    categroyExist.slug = slug
+    if (name) {
+        name = name.toLowerCase()
+        const slug = slugify(name)
+        categroyExist.name = name
+        categroyExist.slug = slug
+    }
     // update image
     if (req.file) {
-        const { sucure_url, public_id } = await cloudinary.uploader.upload(req.file.path, {
+        const { secure_url, public_id } = await cloudinary.uploader.upload(req.file.path, {
             public_id: categroyExist.image.public_id
         })
-        categroyExist.image = { sucure_url, public_id }
-        req.failImage = { sucure_url, public_id }
+        categroyExist.image = { secure_url, public_id }
+        req.failImage = { secure_url, public_id }
     }
     // add to db
     const updatedCategroy = await categroyExist.save()//{}, null
