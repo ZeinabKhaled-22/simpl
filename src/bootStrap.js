@@ -1,7 +1,7 @@
 // import module
 import cors from 'cors'
 import { globalErrorHandling } from "./middleware/asyncHandler.js"
-import { authRouter, categroyRouter, productRouter, subcategroyRouter,  } from "./modules/index.js"
+import { authRouter, categroyRouter, productRouter, subcategroyRouter, wishlistRouter,  } from "./modules/index.js"
 
 // bootStrap
 export const bootStrap = (app, express) => {
@@ -20,6 +20,7 @@ export const bootStrap = (app, express) => {
     app.use('/product', productRouter)
     app.use('/category', categroyRouter)
     app.use('/subcategory', subcategroyRouter)
+    app.use('/wishlist', wishlistRouter)
 
     // globalErrorHandling
     app.use(globalErrorHandling)
