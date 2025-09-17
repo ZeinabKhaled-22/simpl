@@ -28,6 +28,7 @@ export const signup = async (req, res, next) => {
         password,
         birthday,
         gender,
+        role
     })
     // add to db
     const createdUser = await user.save() //{}, null
