@@ -3,4 +3,5 @@ import categroyRouter from './category/category.router.js'
 import productRouter from './product/product.router.js'
 import subcategroyRouter from './subcategory/subcategory.router.js'
 import wishlistRouter from './wishlist/wishlist.router.js'
-export { authRouter, categroyRouter, subcategroyRouter, productRouter, wishlistRouter}
+import userRoter from './user/user.router.js'
+export { authRouter, categroyRouter, subcategroyRouter, productRouter, wishlistRouter, userRoter}

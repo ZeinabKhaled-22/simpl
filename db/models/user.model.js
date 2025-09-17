@@ -43,6 +43,10 @@ const userSchema = new Schema({
         enum: Object.values(roles),
         default: roles.USER
     },
+    image: {
+        type: Object
+    },
+    userName: String,
     wishlist: [{
         type: Schema.Types.ObjectId,
         ref: "Product"

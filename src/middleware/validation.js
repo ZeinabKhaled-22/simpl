@@ -43,5 +43,5 @@ export const generalFields = {
     password: joi.string().pattern(new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_]).{8,}$/)),
     birthday: joi.date(),
     gender: joi.string(),
-    name: joi.string()
+    name: joi.string(),
 }
