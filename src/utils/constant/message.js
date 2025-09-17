@@ -9,7 +9,7 @@ const generateMessage = (entity) => ({
   failToUpdate: `${entity} fail to update`,
 })
 export const messages = {
-  user: { ...generateMessage('user'), verified: 'user verified successfully', invalidCredentials: 'invalid credentials', notAuthorized: 'not authorized to access this api' },
+  user: { ...generateMessage('user'), verified: 'user verified successfully', invalidCredentials: 'invalid credentials', notAuthorized: 'not authorized', forbidden: 'forbidden' },
   product: generateMessage('product'),
   categroy: generateMessage('categroy'),
   subcategroy: generateMessage('subcategroy'),

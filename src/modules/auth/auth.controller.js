@@ -6,7 +6,7 @@ import { sendEmail } from "../../utils/email.js"
 import { generateOTP } from "../../utils/otp.js"
 import { generateToken, verifyToken } from "../../utils/token.js"
 import { AppError } from '../../utils/appError.js'
-import { status } from '../../utils/constant/enums.js'
+import { roles, status } from '../../utils/constant/enums.js'
 
 
 // signup
@@ -82,5 +82,35 @@ export const login = async (req, res, next) => {
         message: "login successfully",
         success: true,
         token
+    })
+}
+
+
+
+// admin login
+export const adminLogin = async (req, res, next) => {
+    // get data from req
+    const { email, password } = req.body
+    // check existence
+    const userExist = await User.findOne({ email }) //{}, null
+    if (!userExist) {
+        return next(new AppError(messages.user.invalidCredentials, 401))
+    }
+    // compare password
+    const matchPassword = bcrypt.compareSync(password, userExist.password)
+    if (!matchPassword) {
+        return next(new AppError(messages.user.invalidCredentials, 401))
+    }
+    // check role
+    if (!userExist.role.includes("admin")) {
+        return next(new AppError(messages.user.forbidden, 403))
+    }
+    // generate token
+    const tokenAdmin = generateToken({ payload: { _id: userExist._id, email } })
+    // send response
+    return res.status(200).json({
+        message: "login is successful",
+        success: true,
+        tokenAdmin
     })
 }

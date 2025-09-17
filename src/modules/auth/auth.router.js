@@ -3,7 +3,7 @@ import { Router } from "express"
 import { isValid } from "../../middleware/validation.js"
 import { asyncHandler } from "../../middleware/asyncHandler.js"
 import { loginVal, signupVal } from "./auth.validation.js"
-import { login, signup } from "./auth.controller.js"
+import { adminLogin, login, signup } from "./auth.controller.js"
 
 
 // router
@@ -17,6 +17,9 @@ authRouter.post("/signup", isValid(signupVal),asyncHandler(signup))
 
 // login
 authRouter.post("/login", isValid(loginVal), asyncHandler(login))
+
+// login admin
+authRouter.post("/adminLogin", isValid(loginVal), asyncHandler(adminLogin))
 
 
 // export
