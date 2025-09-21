@@ -24,3 +24,9 @@ export const status = {
     DELETED: 'deleted'
 }
 Object.freeze(status)
+
+export const paymentMethod = {
+    DEBIT: 'debit',
+    CASH: 'cash'
+}
+Object.freeze(paymentMethod)
