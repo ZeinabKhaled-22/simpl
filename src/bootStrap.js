@@ -10,10 +10,7 @@ export const bootStrap = (app, express) => {
     app.use('/uploads', express.static('uploads'))
 
     // cors
-    app.use(cors({
-        origin: '*',
-        credentials: true
-    }))
+    app.use(cors("*"))
 
     // routing
     app.use("/auth", authRouter)
